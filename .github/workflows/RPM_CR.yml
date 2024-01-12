@@ -1,16 +1,9 @@
 name: Build Linux Packages
 on:
   push:
-    tags:
-      - "*.*.*"
-env:
-  DIST: el7
-  ARCH: noarch
 
 jobs:
-
 build_tarball:
-    name: Build source archive
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository

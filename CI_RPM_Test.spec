@@ -25,6 +25,7 @@ make %{?_smp_mflags}
 %make_install
 
 
+
 %files
 %license LICENSE
 %{_bindir}/%{name}

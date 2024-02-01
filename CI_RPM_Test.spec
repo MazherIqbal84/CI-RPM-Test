@@ -22,7 +22,7 @@ make %{?_smp_mflags}
 
 
 %install
-%make_installi
+%make_install
 
 
 %files

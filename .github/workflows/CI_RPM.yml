@@ -21,7 +21,7 @@ jobs:
     # Runs a community action
     - name: build RPM package
       id: rpm
-      uses: naveenrajm7/rpmbuild@master
+      uses: naveenrajm7/rpmbuild@main
       with:
         spec_file: "CI_RPM_Test.spec"
     

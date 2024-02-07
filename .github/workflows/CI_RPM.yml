@@ -1,21 +1,30 @@
-name: RPM Build
-on: push
+name: Create the DEB
+
+permissions:
+  contents: write
+
+on:
+  push:
+    tags:
+      - 'v*'
 
 jobs:
-  build:
+  Create_Packages:
+    name: Create Package
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: build RPM package on Debian12
-      id: rpm
-      uses: naveenrajm7/rpmbuild@master
-      with:
-        spec_file: "CI_RPM_Test.spec"
-        additional_repos: "['centos-release-scl', 'http://www.percona.com/downloads/percona-release/redhat/0.1-3/percona-release-0.1-3.noarch.rpm']"
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          path: "REPO"
 
-    - name: Upload artifact
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        name: Binary RPM
-        path: ${{ steps.rpm.outputs.rpm_dir_path }}
+      - name: Copy script files around to stop .github from being added to the package then build the package
+        run: |
+          mkdir PKG_SOURCE
+          cp -Rf REPO/usr REPO/etc REPO/DEBIAN PKG_SOURCE
+          dpkg-deb --build PKG_SOURCE package.deb
 
+      - name: Release the Package
+        uses: softprops/action-gh-release@v1
+        with:
+          files: package.deb

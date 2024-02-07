@@ -10,7 +10,7 @@ on:
 
 jobs:
   Create_Packages:
-    name: Create Package
+    name: Create Package Debian
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code

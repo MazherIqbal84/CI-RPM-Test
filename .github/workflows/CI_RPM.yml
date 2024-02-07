@@ -6,8 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-
-    - name: build RPM package
+    - name: build RPM package on Debian12
       id: rpm
       uses: naveenrajm7/rpmbuild@master
       with:

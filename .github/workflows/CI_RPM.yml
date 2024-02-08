@@ -3,7 +3,10 @@ name: Create the DEB
 permissions:
   contents: write
 
-on: push
+on:
+  push:
+    tags:
+      - 'v*'
        
 jobs:
   Create_Packages:

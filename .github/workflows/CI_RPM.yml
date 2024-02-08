@@ -16,7 +16,4 @@ jobs:
           cp -Rf ./usr ./DEBIAN PKG_SOURCE
           dpkg-deb --build PKG_SOURCE package.deb
 
-      - name: Release the Package
-        uses: softprops/action-gh-release@v1
-        with:
-          files: package.deb
+     

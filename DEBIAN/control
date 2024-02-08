@@ -1,5 +1,5 @@
 Package:        CI-RPM-Test
-Version:	  0.0.1
+Version:	  1.0.0
 Release:    1
 Section:       Science/Electronics
 Priority:      optional

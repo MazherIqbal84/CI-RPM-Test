@@ -3,7 +3,10 @@ name: Create the DEB
 permissions:
   contents: write
 
-on: push
+on: 
+  push:
+    tags:
+        - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   Create_Packages:
@@ -12,7 +15,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
 
       - name: Copy script files around to stop .github from being added to the package then build the package
         run: |
@@ -20,4 +22,8 @@ jobs:
           cp -Rf ./usr ./DEBIAN PKG_SOURCE
           dpkg-deb --build PKG_SOURCE package.deb
 
-     
+      - name: Release the Package
+        uses: softprops/action-gh-release@v1
+        with:
+          files: package.deb
+          

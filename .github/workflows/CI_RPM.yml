@@ -3,10 +3,8 @@ name: Create the DEB
 permissions:
   contents: write
 
-on:
-  push:
-    tags:
-     - 'v*'
+on: push
+   
        
 jobs:
   Create_Packages:
@@ -22,9 +20,9 @@ jobs:
           cp -Rf ./usr ./DEBIAN PKG_SOURCE
           dpkg-deb --build PKG_SOURCE package.deb
 
-      - name: Release the Package
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Release
         uses: softprops/action-gh-release@v1
-        with:
-          files: package.deb          
-          
+        if: startsWith(github.ref, 'refs/tags/')        
         

@@ -1,9 +1,9 @@
 Package:        CI-RPM-Test
-Version:	 0.0.1
+Version:	  0.0.1
+Release:    1
 Section:       Science/Electronics
 Priority:      optional
 Architecture: all
 Maintainer:    Mazher Iqbal <mazher.iqbal@lip6.fr>
 Build-Depends: gcc 
-Standards-Version: 1.0.2
 Description: Test CI on Github

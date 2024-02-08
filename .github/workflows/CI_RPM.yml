@@ -6,7 +6,9 @@ permissions:
 on:
   push:
     tags:
-      - v1
+     - '1.*'
+    tags-ignore:
+      - '2.*'
        
 jobs:
   Create_Packages:

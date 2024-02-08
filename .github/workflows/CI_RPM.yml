@@ -1,4 +1,8 @@
 name: Create the DEB
+
+permissions:
+  contents: write
+
 on: push
 
 jobs:

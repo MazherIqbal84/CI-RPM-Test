@@ -3,7 +3,10 @@ name: Create the DEB
 permissions:
   contents: write
 
-on: push
+on:
+  push:
+    tags:
+      - 'v*'
           
 jobs:
   Create_Packages:
@@ -12,11 +15,13 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        with:
+          path: "REPO"
 
       - name: Copy script files around to stop .github from being added to the package then build the package
         run: |
           mkdir PKG_SOURCE
-          cp -Rf ./usr ./DEBIAN PKG_SOURCE
+          cp -Rf REPO/usr REPO/DEBIAN PKG_SOURCE
           dpkg-deb --build PKG_SOURCE package.deb
 
       - name: Checkout

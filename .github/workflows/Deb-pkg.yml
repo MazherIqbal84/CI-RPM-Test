@@ -12,7 +12,7 @@ jobs:
       - uses: singingwolfboy/build-dpkg-buster@v1
         id: build
         with:
-          args: --unsigned-source --unsigned-changes
+          args:  ${{ github.event_name }} 
 
       - uses: actions/upload-artifact@v1
         with:

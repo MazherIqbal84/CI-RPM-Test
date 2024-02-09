@@ -4,8 +4,7 @@ permissions:
   contents: write
 
 on: push
-   
-       
+          
 jobs:
   Create_Packages:
     name: Create Package Debian 
@@ -25,6 +24,6 @@ jobs:
       - name: Release
         uses: softprops/action-gh-release@v1
         with:
-            tag_name: test
+            tag_name: CI-RPM-Test
             file: package.deb
         

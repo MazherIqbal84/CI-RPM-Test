@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          using: 'node20'
+          main: 'main.js'
 
       - uses: singingwolfboy/build-dpkg-buster@v1
         id: build

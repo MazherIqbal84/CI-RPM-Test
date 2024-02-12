@@ -1,24 +1,11 @@
-on:
-  push:
-    branches:
-      - main
-
+on: push
+    
 jobs:
-  build-deb:
+  build-debs:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: jtdor/build-deb-action@v1
         with:
-          using: 'node20'
-          main: 'main.js'
-
-      - uses: singingwolfboy/build-dpkg-buster@v1
-        id: build
-        with:
-          args:  ${{ github.repository }}
-
-      - uses: actions/upload-artifact@v1
-        with:
-          name: ${{ steps.build.outputs.filename }}
-          path: ${{ steps.build.outputs.filename }}
-
+          host-arch: i386
+          buildpackage-opts: --build=binary --no-sign

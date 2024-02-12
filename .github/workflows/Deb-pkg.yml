@@ -1,3 +1,5 @@
+name: Testing Debian packaging
+
 on: push
     
 jobs:
@@ -5,8 +7,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: jtdor/build-deb-action@v1
+      - uses: ./
+        env: 
+            DEB_BUILD_OPTIONS: noautodbgsym
         with:
-          host-arch: i386
+          apt-opts: --install-recommends --no-install-suggests
           buildpackage-opts: --build=binary --no-sign
-          
+          source-dir: test1
+      - run: |
+          dpkg --info debian/artifacts/test_1_amd64.deb
+          dpkg --contents debian/artifacts/test_1_amd64.deb | grep ./usr/bin/mybin
+          test -f debian/artifacts/test_1_amd64.buildinfo
+          test -f debian/artifacts/test_1_amd64.changes 
+      
+      
